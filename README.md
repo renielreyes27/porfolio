@@ -1,6 +1,6 @@
-# Ralph Reniel A. Reyes — IT Portfolio
+# IT Portfolio
 
-Personal portfolio website of **Ralph Reniel A. Reyes**, a 3rd-year Information Technology student focused on learning and building practical web projects while developing skills in programming and technology.
+A personal Information Technology portfolio website built to showcase academic work, skills, projects, experience, certificates, and web development work.
 
 > **Status:** Active Development
 
@@ -36,7 +36,7 @@ Personal portfolio website of **Ralph Reniel A. Reyes**, a 3rd-year Information 
 - Resume live preview with open-in-tab, zoom, print, and download controls
 - Interactive Education and Experience location maps
 - Contact form with client-side validation
-- Social links for GitHub and Facebook
+- Social links
 - Soft white and purple visual design system
 - Mobile-friendly navigation
 
@@ -54,47 +54,23 @@ Features presented in the portfolio include:
 - Interactive screenshot gallery
 - GitHub repository link
 
-Repository:
-`https://github.com/nicolaseugenio2022-cyber/St-rose-laboratory-result-management-system`
-
 ### Personal Portfolio Website
 
 This repository contains the portfolio website itself, built to present academic background, skills, projects, experience, certificates, and contact information in a clean and responsive interface.
 
-Repository:
-`https://github.com/renielreyes27/porfolio`
-
 ## Experience
 
-### On-the-Job Trainee — Nueva Ecija I Electric Cooperative (NEECO I)
+### On-the-Job Training
 
-**January–February 2026**
-
-- Assisted in document scanning and filing of records
-- Performed data encoding
-- Supported daily office operations and administrative tasks
-- Handled basic customer inquiries and concerns
-- Maintained an organized filing system
+A practical office-based training experience involving document handling, data encoding, daily office support, and basic customer assistance.
 
 ## Education
 
-- **College for Research and Technology** — Bachelor of Information Technology, Ongoing
-- **San Agustin Diocesan Academy** — Secondary Education, 2021
-- **Blessed Hope Christian School** — Primary Education, 2018
+The portfolio includes primary, secondary, and ongoing tertiary education history.
 
 ## Certificates
 
-**College for Research & Technology**
-
-Theme: **Turn a Concept into Creations**
-
-## Contact
-
-- **Email:** `reniel.reyes27@gmail.com`
-- **Phone:** `0936 928 8206`
-- **Location:** Jaen, Nueva Ecija, Philippines
-- **GitHub:** `https://github.com/renielreyes27`
-- **Facebook:** `https://www.facebook.com/reniel.alas.reyes/`
+The portfolio includes academic seminar and certificate information.
 
 ## Validation
 
