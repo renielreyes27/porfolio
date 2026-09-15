@@ -1,6 +1,6 @@
 # IT Portfolio
 
-A personal Information Technology portfolio website built to showcase academic work, skills, projects, experience, certificates, and web development work.
+A personal Information Technology portfolio website built to showcase academic work, skills, projects, web development work, and selected portfolio features.
 
 > **Status:** Active Development
 
@@ -19,7 +19,6 @@ A personal Information Technology portfolio website built to showcase academic w
 - About Me
 - Skills
 - Projects
-- Experience
 - Education
 - Certificates
 - Get in Touch
@@ -34,7 +33,7 @@ A personal Information Technology portfolio website built to showcase academic w
 - Project screenshot gallery / live preview modal
 - GitHub project links
 - Resume live preview with open-in-tab, zoom, print, and download controls
-- Interactive Education and Experience location maps
+- Interactive location maps
 - Contact form with client-side validation
 - Social links
 - Soft white and purple visual design system
@@ -56,13 +55,7 @@ Features presented in the portfolio include:
 
 ### Personal Portfolio Website
 
-This repository contains the portfolio website itself, built to present academic background, skills, projects, experience, certificates, and contact information in a clean and responsive interface.
-
-## Experience
-
-### On-the-Job Training
-
-A practical office-based training experience involving document handling, data encoding, daily office support, and basic customer assistance.
+This repository contains the portfolio website itself, built to present academic background, skills, projects, certificates, and contact information in a clean and responsive interface.
 
 ## Education
 
@@ -89,7 +82,7 @@ The production build is generated through Vite.
 src/
 ├── components/
 │   ├── layout/          # Navbar, footer, and shared layout components
-│   ├── sections/        # Hero, About, Skills, Projects, Experience, etc.
+│   ├── sections/        # Hero, About, Skills, Projects, Education, etc.
 │   └── ui/              # Reusable UI components and animations
 ├── data/                # Centralized portfolio content and project data
 ├── styles/              # Global styles, variables, and animations
