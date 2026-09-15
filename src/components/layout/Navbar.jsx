@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { navigation } from '../../config/navigation';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
@@ -8,6 +8,13 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -15,9 +22,9 @@ export default function Navbar() {
       // Simple active section detection
       const sections = navigation.map(item => item.href.replace('#', ''));
       let current = '';
-      
+
       const isBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 50;
-      
+
       if (isBottom) {
         current = sections[sections.length - 1];
       } else {
@@ -44,14 +51,13 @@ export default function Navbar() {
   };
 
   return (
-    <header 
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-background/90 backdrop-blur-md border-b border-surface py-2 shadow-lg shadow-black/20' : 'bg-transparent py-4 border-transparent'
-      }`}
+    <header
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-background/90 backdrop-blur-md border-b border-surface py-2 shadow-lg shadow-black/20' : 'bg-transparent py-4 border-transparent'
+        }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
-        <a href="#home" className="text-xl font-bold text-primary tracking-tighter hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded">PORTFOLIO</a>
-        
+        <a href="#home" className="text-xl font-bold text-primary tracking-tighter hover:text-primary/80 transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded">PORTFOLIO</a>
+
         {/* Desktop Nav */}
         <nav className="hidden md:block">
           <ul className="flex space-x-8">
@@ -59,21 +65,13 @@ export default function Navbar() {
               const isActive = activeSection === item.href.replace('#', '');
               return (
                 <li key={item.name} className="relative">
-                  <a 
-                    href={item.href} 
-                    className={`text-sm tracking-wide font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded-sm px-2 py-1 ${
-                      isActive ? 'text-primary' : 'text-text-muted hover:text-white'
-                    }`}
+                  <a
+                    href={item.href}
+                    className={`relative z-10 block text-sm tracking-wide font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded-md px-4 py-2 ${isActive ? 'text-primary' : 'text-text-muted hover:text-primary/80'
+                      }`}
                   >
                     {item.name}
                   </a>
-                  {isActive && (
-                    <motion.div
-                      layoutId="nav-indicator"
-                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
-                      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                    />
-                  )}
                 </li>
               );
             })}
@@ -81,7 +79,7 @@ export default function Navbar() {
         </nav>
 
         {/* Mobile Menu Button */}
-        <button 
+        <button
           className="md:hidden text-text-main hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded p-1"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
@@ -102,8 +100,8 @@ export default function Navbar() {
             <ul className="flex flex-col py-4 px-4 space-y-4">
               {navigation.map((item) => (
                 <li key={item.name}>
-                  <a 
-                    href={item.href} 
+                  <a
+                    href={item.href}
                     onClick={handleMobileNavClick}
                     className="block text-text-muted hover:text-primary transition-colors text-lg font-medium"
                   >
@@ -115,6 +113,12 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Scroll Progress Indicator */}
+      <motion.div
+        style={{ scaleX }}
+        className="absolute bottom-0 left-0 right-0 h-[2px] bg-primary origin-left"
+      />
     </header>
   );
 }

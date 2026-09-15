@@ -5,7 +5,6 @@ import Projects from '../components/sections/Projects';
 import Experience from '../components/sections/Experience';
 import Education from '../components/sections/Education';
 import Certificates from '../components/sections/Certificates';
-import Resume from '../components/sections/Resume';
 import Contact from '../components/sections/Contact';
 
 export default function Home() {
@@ -18,7 +17,6 @@ export default function Home() {
       <Experience />
       <Education />
       <Certificates />
-      <Resume />
       <Contact />
     </div>
   );

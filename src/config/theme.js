@@ -1,11 +1,11 @@
 export const theme = {
   colors: {
-    primary: '#330066',
-    secondary: '#8b5cf6',
-    background: '#0f172a',
-    surface: '#1e293b',
-    textMain: '#f8fafc',
-    textMuted: '#94a3b8',
+    primary: '#8B5CF6',
+    secondary: '#7C3AED',
+    background: '#FAF9FC',
+    surface: '#FFFFFF',
+    textMain: '#18151F',
+    textMuted: '#4B4555',
   },
   typography: {
     fontFamily: "'Inter', system-ui, sans-serif",

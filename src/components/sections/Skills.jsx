@@ -5,7 +5,7 @@ export default function Skills() {
   if (!skills || skills.length === 0) return null;
 
   return (
-    <section id="skills" className="py-24 bg-surface/30">
+    <section id="skills" className="py-20 bg-surface/30">
       <div className="container mx-auto px-4">
         <ScrollReveal>
           <h2 className="text-3xl md:text-5xl font-extrabold mb-12 flex items-center tracking-tight">
@@ -14,17 +14,27 @@ export default function Skills() {
           </h2>
         </ScrollReveal>
         
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-          {skills.map((skill, index) => (
-            <ScrollReveal 
-              key={index} 
-              delay={index * 0.05} 
-              className="group"
-            >
-              <div className="p-6 h-full bg-background rounded-xl border border-surface/50 text-center hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 hover:-translate-y-2">
-                <p className="font-medium text-text-main group-hover:text-primary transition-colors">{skill.name}</p>
+        <div className="space-y-12">
+          {skills.map((categoryGroup, index) => (
+            <div key={index}>
+              <ScrollReveal delay={0.1}>
+                <h3 className="text-2xl font-bold mb-6 text-text-main">{categoryGroup.category}</h3>
+              </ScrollReveal>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                {categoryGroup.items.map((skill, skillIndex) => (
+                  <ScrollReveal 
+                    key={skillIndex} 
+                    delay={skillIndex * 0.05} 
+                    className="group"
+                  >
+                    <div className="p-4 h-full bg-surface rounded-lg border border-primary/10 shadow-sm hover:shadow-md hover:border-primary/30 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary/40 group-hover:bg-primary transition-colors"></div>
+                      <p className="font-medium text-text-main">{skill.name}</p>
+                    </div>
+                  </ScrollReveal>
+                ))}
               </div>
-            </ScrollReveal>
+            </div>
           ))}
         </div>
       </div>

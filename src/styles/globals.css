@@ -16,8 +16,11 @@
   html {
     scroll-behavior: smooth;
   }
+
   body {
     background-color: var(--color-background);
+    background-image: radial-gradient(circle at 15% 0%, var(--color-purple-tint) 0%, transparent 40%), radial-gradient(circle at 85% 100%, var(--color-purple-tint) 0%, transparent 40%);
+    background-attachment: fixed;
     color: var(--color-text-main);
     font-family: 'Inter', system-ui, sans-serif;
   }
