@@ -10,10 +10,21 @@ import {
   FiMaximize2 
 } from 'react-icons/fi';
 
+const A4_BASE_WIDTH = 820;
+const A4_BASE_HEIGHT = 1140;
+const A4_RATIO = A4_BASE_HEIGHT / A4_BASE_WIDTH;
+
 export default function ResumePreviewModal({ isOpen, onClose }) {
   const [zoom, setZoom] = useState(100);
   const [isFitWidth, setIsFitWidth] = useState(false);
   const iframeRef = useRef(null);
+  const containerRef = useRef(null);
+  const [containerWidth, setContainerWidth] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return Math.min(A4_BASE_WIDTH, window.innerWidth - 32);
+    }
+    return A4_BASE_WIDTH;
+  });
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -40,6 +51,39 @@ export default function ResumePreviewModal({ isOpen, onClose }) {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isOpen, onClose]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const updateDimensions = () => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const style = window.getComputedStyle(containerRef.current);
+      const paddingLeft = parseFloat(style.paddingLeft) || 0;
+      const paddingRight = parseFloat(style.paddingRight) || 0;
+      const availWidth = Math.floor(rect.width - paddingLeft - paddingRight);
+      if (availWidth > 0) {
+        setContainerWidth(availWidth);
+      }
+    };
+
+    updateDimensions();
+
+    let resizeObserver;
+    if (typeof ResizeObserver !== 'undefined' && containerRef.current) {
+      resizeObserver = new ResizeObserver(() => {
+        updateDimensions();
+      });
+      resizeObserver.observe(containerRef.current);
+    }
+
+    window.addEventListener('resize', updateDimensions);
+
+    return () => {
+      if (resizeObserver) resizeObserver.disconnect();
+      window.removeEventListener('resize', updateDimensions);
+    };
+  }, [isOpen]);
 
   const zoomIn = () => {
     setIsFitWidth(false);
@@ -76,6 +120,22 @@ export default function ResumePreviewModal({ isOpen, onClose }) {
       printWin.addEventListener('load', () => printWin.print());
     }
   };
+
+  const effectiveBaseWidth = Math.min(A4_BASE_WIDTH, containerWidth > 0 ? containerWidth : A4_BASE_WIDTH);
+
+  const docWidth = isFitWidth 
+    ? '100%' 
+    : `${Math.round(effectiveBaseWidth * (zoom / 100))}px`;
+
+  const docHeight = isFitWidth
+    ? `${Math.round((containerWidth > 0 ? containerWidth : effectiveBaseWidth) * A4_RATIO)}px`
+    : `${Math.round(effectiveBaseWidth * (zoom / 100) * A4_RATIO)}px`;
+
+  const maxWidth = isFitWidth
+    ? '100%'
+    : zoom <= 100
+      ? '100%'
+      : `${Math.round(effectiveBaseWidth * (zoom / 100))}px`;
 
   return (
     <AnimatePresence>
@@ -202,16 +262,21 @@ export default function ResumePreviewModal({ isOpen, onClose }) {
             </div>
 
             {/* Centered Scrollable Resume Document Area */}
-            <div className="w-full flex-grow overflow-auto p-2 sm:p-4 md:p-8 flex justify-center items-start bg-[#FAF9FC]">
+            <div 
+              ref={containerRef}
+              className={`w-full flex-grow p-2 sm:p-4 md:p-8 flex justify-center items-start bg-[#FAF9FC] ${
+                zoom > 100 ? 'overflow-auto' : 'overflow-y-auto overflow-x-hidden'
+              }`}
+            >
               <div
                 style={{
-                  width: isFitWidth ? '100%' : `${Math.round(820 * (zoom / 100))}px`,
-                  maxWidth: isFitWidth ? '100%' : `${Math.round(820 * (zoom / 100))}px`,
-                  height: `${Math.round(1140 * (zoom / 100))}px`,
-                  minHeight: '480px',
+                  width: docWidth,
+                  maxWidth,
+                  height: docHeight,
+                  aspectRatio: `${A4_BASE_WIDTH} / ${A4_BASE_HEIGHT}`,
                   transition: 'width 0.15s ease-out, height 0.15s ease-out'
                 }}
-                className="bg-white rounded-xl shadow-2xl border border-surface/90 overflow-hidden flex flex-col relative"
+                className="bg-white rounded-xl shadow-2xl border border-surface/90 overflow-hidden flex flex-col relative shrink-0 mx-auto"
               >
                 <iframe
                   ref={iframeRef}

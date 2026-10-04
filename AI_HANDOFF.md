@@ -165,6 +165,17 @@ Testing & Verification Completed
     - `npm run lint`: Passed with 0 errors.
     - `npm run build`: Production bundle built cleanly in 5.61s with 0 errors.
 
+- **Resume Live Preview Responsiveness Pass**:
+  - **Container-Based Scaling**: Updated `ResumePreviewModal.jsx` to dynamically compute available container width via `ResizeObserver` (accounting for computed container padding and window fallback), eliminating the fixed 820px width overflow on tablet and mobile viewports.
+  - **A4 Aspect Ratio Preservation**: Calculated document height proportionally based on the A4 aspect ratio (`820:1140` / `A4_RATIO = 1140 / 820`) and added CSS `aspect-ratio: 820 / 1140`, removing the hardcoded `minHeight: 480px` constraint that previously distorted the aspect ratio on compact screens.
+  - **Desktop Size Preservation**: Preserved the original desktop A4 preview dimensions (`820px` width by `1140px` height at 100% zoom).
+  - **Horizontal Overflow Prevention**: Set container to `overflow-y-auto overflow-x-hidden` when `zoom <= 100` and applied `max-w-full`, preventing sideways scrolling and page shift on mobile, while switching to `overflow-auto` when `zoom > 100` to allow intentional inspection of zoomed content.
+  - **Existing Controls Unchanged**: Preserved all existing toolbar elements, zoom in/out, fit width toggle, Open in Tab, Download, Print, and Close functionality and styling.
+  - **Verification**:
+    - `npm run lint`: Passed with 0 errors.
+    - `npm run build`: Production bundle built cleanly in 5.91s with 0 errors.
+
 ## Next Recommended Step
 Address optional minor optimizations (e.g. updating document title in `index.html` from "Portfolio Foundation" to the student's name, fixing favicon link) upon user direction.
+
 
