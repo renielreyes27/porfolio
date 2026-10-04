@@ -18,16 +18,16 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-20">
+    <section id="projects" className="py-16 sm:py-20">
       <div className="container mx-auto px-4">
         <ScrollReveal>
-          <h2 className="text-3xl md:text-5xl font-extrabold mb-12 flex items-center tracking-tight">
-            <span className="text-primary/70 mr-6 text-xl md:text-2xl font-mono font-medium tracking-widest relative -top-1">03.</span> Projects
-            <div className="h-px bg-surface flex-grow ml-8 hidden md:block opacity-50"></div>
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold mb-8 sm:mb-12 flex items-center tracking-tight">
+            <span className="text-primary/70 mr-3 sm:mr-6 text-lg sm:text-xl md:text-2xl font-mono font-medium tracking-widest relative -top-0.5 sm:-top-1">03.</span> Projects
+            <div className="h-px bg-surface flex-grow ml-4 sm:ml-8 hidden md:block opacity-50"></div>
           </h2>
         </ScrollReveal>
         
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
           {projects.map((project, index) => {
             const hasImages = (project.images?.length > 0) || Boolean(project.image);
             return (
@@ -51,10 +51,10 @@ export default function Projects() {
                       </div>
                     )}
                   </div>
-                  <div className="p-6 flex flex-col flex-grow">
+                  <div className="p-5 sm:p-6 flex flex-col flex-grow">
                     <div className="flex justify-between items-start mb-2">
                       <div>
-                        <h3 className="text-xl font-bold text-text-main group-hover:text-primary transition-colors">{project.title}</h3>
+                        <h3 className="text-lg sm:text-xl font-bold text-text-main group-hover:text-primary transition-colors leading-snug">{project.title}</h3>
                         {project.github ? (
                           <a 
                             href={project.github} 
@@ -80,10 +80,10 @@ export default function Projects() {
                         )}
                       </div>
                     </div>
-                    <p className="text-text-muted mb-6 flex-grow">{project.description}</p>
-                    <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-background">
+                    <p className="text-sm sm:text-base text-text-muted mb-4 sm:mb-6 flex-grow leading-relaxed">{project.description}</p>
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-auto pt-3 sm:pt-4 border-t border-background">
                       {project.tags?.map((tag, i) => (
-                        <span key={i} className="text-xs font-mono px-2 py-1 bg-background/80 rounded text-primary/80">
+                        <span key={i} className="text-xs font-mono px-2 py-0.5 sm:py-1 bg-background/80 rounded text-primary/80">
                           {tag}
                         </span>
                       ))}

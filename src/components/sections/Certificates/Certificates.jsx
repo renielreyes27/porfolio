@@ -1,5 +1,5 @@
 // Certificates.jsx
-// Placeholder certificates section component for the portfolio.
+// Placeholder certificates & training section component for the portfolio.
 
 function Certificates() {
   return null;

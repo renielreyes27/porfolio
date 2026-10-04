@@ -40,7 +40,7 @@ export default function Hero() {
         <div className="w-full h-full bg-background rounded-full shadow-[inset_0_0_15px_rgba(168,85,247,0.1)]"></div>
       </div>
       
-      <div className="container mx-auto px-4 relative z-10 pt-8 md:pt-4">
+      <div className="container mx-auto px-4 relative z-10 pt-24 pb-16 sm:pt-28 md:pt-4 md:pb-0">
         <motion.div 
           style={{ y, opacity }}
           variants={containerVariants}
@@ -48,43 +48,43 @@ export default function Hero() {
           animate="visible"
           className="max-w-3xl"
         >
-          <motion.div variants={itemVariants} className="mb-6 inline-block">
-            <span className="text-primary font-mono text-xl md:text-2xl font-bold bg-primary/10 px-3 py-1 rounded-md border border-primary/20">
+          <motion.div variants={itemVariants} className="mb-4 sm:mb-6 inline-block">
+            <span className="text-primary font-mono text-lg sm:text-xl md:text-2xl font-bold bg-primary/10 px-3 py-1 rounded-md border border-primary/20">
               &lt;R/&gt;
             </span>
           </motion.div>
           
-          <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-text-main mb-6 leading-tight tracking-tight relative z-10">
+          <motion.h1 variants={itemVariants} className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold text-text-main mb-4 sm:mb-6 leading-tight tracking-tight relative z-10 break-words">
             {profile.name || 'Ralph Reniel A. Reyes'}
             <br />
-            <span className="text-text-main/90 text-2xl md:text-4xl lg:text-5xl block mt-4 font-semibold tracking-wide">
+            <span className="text-text-main/90 text-xl sm:text-3xl md:text-4xl lg:text-5xl block mt-2 sm:mt-4 font-semibold tracking-wide">
               {profile.title || 'Information Technology Student'}
             </span>
           </motion.h1>
           
-          <motion.p variants={itemVariants} className="text-lg md:text-xl text-text-muted mb-8 max-w-3xl leading-relaxed font-light relative z-10">
+          <motion.p variants={itemVariants} className="text-base sm:text-lg md:text-xl text-text-muted mb-6 sm:mb-8 max-w-3xl leading-relaxed font-light relative z-10">
             {profile.tagline || 'IT student learning and building practical web projects while developing my skills in programming and technology.'}
           </motion.p>
           
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-4 md:gap-6 items-center relative z-10">
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 md:gap-6 items-stretch sm:items-center relative z-10">
             <motion.a 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
               href="#contact" 
-              className="px-8 py-4 bg-primary text-white rounded-full font-bold tracking-wide shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background focus:ring-primary"
+              className="w-full sm:w-auto text-center justify-center px-6 py-3.5 sm:px-8 sm:py-4 bg-primary text-white rounded-full font-bold tracking-wide shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background focus:ring-primary"
             >
               Get in Touch
             </motion.a>
             <motion.button 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
               type="button"
               onClick={() => setIsPreviewOpen(true)}
-              className="px-8 py-4 bg-transparent border-2 border-primary text-text-main rounded-full font-bold tracking-wide hover:bg-primary/20 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background focus:ring-primary flex items-center gap-2 cursor-pointer"
+              className="w-full sm:w-auto text-center justify-center px-6 py-3.5 sm:px-8 sm:py-4 bg-transparent border-2 border-primary text-text-main rounded-full font-bold tracking-wide hover:bg-primary/20 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background focus:ring-primary flex items-center justify-center gap-2 cursor-pointer"
             >
-              View Resume <span className="text-xl leading-none -mt-1">↗</span>
+              View Resume <span className="text-xl leading-none -mt-0.5">↗</span>
             </motion.button>
-            <div className="flex space-x-5">
+            <div className="flex items-center justify-center sm:justify-start space-x-5 pt-2 sm:pt-0">
               {socials.map((social, index) => (
                 <motion.a 
                   key={index} 
@@ -109,7 +109,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none"
+        className="hidden sm:flex absolute bottom-8 sm:bottom-10 left-1/2 -translate-x-1/2 flex-col items-center pointer-events-none"
       >
         <span className="text-xs text-text-muted tracking-widest uppercase mb-2">Scroll</span>
         <motion.div 

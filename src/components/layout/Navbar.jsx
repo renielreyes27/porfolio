@@ -52,11 +52,11 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-background/90 backdrop-blur-md border-b border-surface py-2 shadow-lg shadow-black/20' : 'bg-transparent py-4 border-transparent'
+      className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-background/90 backdrop-blur-md border-b border-surface py-2 shadow-lg shadow-black/20' : 'bg-transparent py-3 sm:py-4 border-transparent'
         }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
-        <a href="#home" className="text-xl font-bold text-primary tracking-tighter hover:text-primary/80 transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded">PORTFOLIO</a>
+        <a href="#home" className="text-lg sm:text-xl font-bold text-primary tracking-tighter hover:text-primary/80 transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded">PORTFOLIO</a>
 
         {/* Desktop Nav */}
         <nav className="hidden md:block">
@@ -80,11 +80,11 @@ export default function Navbar() {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-text-main hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded p-1"
+          className="md:hidden text-text-main hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded-lg p-2 min-w-[44px] min-h-[44px] flex items-center justify-center -mr-1"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
-          {mobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+          {mobileMenuOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
         </button>
       </div>
 
@@ -95,20 +95,27 @@ export default function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="md:hidden overflow-hidden bg-surface border-b border-surface/50"
+            className="md:hidden overflow-hidden bg-surface border-b border-surface/50 shadow-xl"
           >
-            <ul className="flex flex-col py-4 px-4 space-y-4">
-              {navigation.map((item) => (
-                <li key={item.name}>
-                  <a
-                    href={item.href}
-                    onClick={handleMobileNavClick}
-                    className="block text-text-muted hover:text-primary transition-colors text-lg font-medium"
-                  >
-                    {item.name}
-                  </a>
-                </li>
-              ))}
+            <ul className="flex flex-col py-3 px-3 space-y-1">
+              {navigation.map((item) => {
+                const isActive = activeSection === item.href.replace('#', '');
+                return (
+                  <li key={item.name}>
+                    <a
+                      href={item.href}
+                      onClick={handleMobileNavClick}
+                      className={`block py-2.5 px-3 rounded-lg text-base font-medium transition-colors ${
+                        isActive
+                          ? 'text-primary bg-primary/10 font-semibold'
+                          : 'text-text-muted hover:text-primary hover:bg-background/60'
+                      }`}
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </motion.div>
         )}

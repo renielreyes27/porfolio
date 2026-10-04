@@ -22,6 +22,8 @@ Testing & Verification Completed
 - `src/components/sections/Contact.jsx`
 - `src/data/projects.js`
 - `src/data/profile.js`
+- `src/data/certificates.js`
+- `src/styles/globals.css`
 - `src/pages/Home.jsx`
 
 ## Architecture Decisions
@@ -142,15 +144,27 @@ Testing & Verification Completed
   - **Projects**: Removed purple overlay/tint and grayscale filter from project cards so images display in natural colors by default with hover zoom; removed "Interactive Web Experience" project completely; removed extra External Link ↗ from St. Rose while preserving GitHub link and screenshot gallery; adjusted grid to clean 2-column layout.
   - **Verification**: `npm run lint` and `npm run build` passed with 0 errors.
 
-- **Phase 4 Inspection & Testing Pass**:
-  - Conducted full automated browser and responsive testing via Chrome DevTools Protocol across Desktop (1280x800), Tablet (768x1024), and Mobile (375x812).
-  - Verified all 8 section mountings (`#home`, `#about`, `#skills`, `#projects`, `#experience`, `#education`, `#certificates`, `#contact`), sequential numbering (`01` through `07`), and anchor navigations.
-  - Tested interactive Hero Resume Live Preview modal: confirmed custom toolbar, zoom in/out, fit toggle, print action, download action, and backdrop/close button mechanics with zero regressions.
-  - Tested Projects screenshot gallery: confirmed thumbnail selection, prev/next navigation, image counter, clean close, and verified GitHub ↗ link click separation (`stopPropagation`).
-  - Tested interactive Google Maps embed toggles in both Education and Experience sections.
-  - Tested Contact form client-side validation for empty/invalid inputs and successful submission handling.
-  - Verified zero horizontal overflow (`scrollWidth <= innerWidth`) on desktop, tablet, and mobile viewports.
-  - Code Quality & Build Verification: `npm run lint` (0 errors) and `npm run build` (production assets compiled cleanly).
+- **Mobile Polish & Certificates & Training Pass**:
+  - **Certificates & Training**:
+    - Renamed section from "Certificates" to "Certificates & Training" across heading, typography, and comments.
+    - Preserved existing "Graphic Design Seminar" entry.
+    - Added new entry: "Learn CCNA 200-301 Network Fundamentals Online" (Provider: Simplilearn, Type: Course Completion Certificate, Date: October 2026, Certificate Code: 10829178) in `src/data/certificates.js`.
+    - Enhanced card layout in `Certificates.jsx` to render provider/issuer, type badge, date, and certificate code cleanly with responsive padding and text wrapping.
+  - **Mobile Polish (320px, 375px, 390px, 430px)**:
+    - `globals.css`: Added global `overflow-x: hidden`, `max-width: 100vw`, and `-webkit-tap-highlight-color: transparent` to guarantee zero horizontal scroll.
+    - `Navbar.jsx`: Refined mobile header clearance, scaled logo, increased hamburger toggle button touch target to 44px, and added mobile drawer active link styles and touch-friendly padding.
+    - `Hero.jsx`: Added mobile top clearance (`pt-24 pb-16 sm:pt-28`) preventing fixed navbar overlap; scaled title down (`text-3xl sm:text-5xl md:text-7xl lg:text-8xl`) and subtitle (`text-xl sm:text-3xl`) to prevent word clipping on 320px-390px viewports; adapted CTA buttons to stacked full-width on mobile (`w-full sm:w-auto`) with centered socials; hid decorative scroll arrow on small mobile screens.
+    - `About.jsx`: Scaled heading typography (`text-2xl sm:text-3xl md:text-5xl`), adjusted card padding from `p-8` to `p-5 sm:p-8 lg:p-12`, and centered responsive avatar max width for compact mobile screens.
+    - `Skills.jsx`: Reduced mobile grid gap (`gap-2.5 sm:gap-4 md:gap-6`), optimized card padding (`p-3 sm:p-4`), and enabled graceful text wrapping for long skill names like "Database Management".
+    - `Projects.jsx`: Scaled heading, adjusted card padding (`p-5 sm:p-6`) and tag gaps, and enhanced mobile touch targets for GitHub links.
+    - `ProjectGalleryModal.jsx`: Optimized modal padding (`p-2 sm:p-4`), reduced image stage min-height on mobile (`min-h-[220px] sm:min-h-[360px]`), improved navigation arrow sizing/positioning, and scaled thumbnail buttons (`w-14 h-10 sm:w-20 sm:h-14`).
+    - `Education.jsx` & `Experience.jsx`: Scaled headings (`text-2xl sm:text-3xl md:text-5xl`), optimized timeline indentation on small screens (`pl-6 sm:pl-8`), adjusted card padding (`p-4 sm:p-6`), and sized Google Maps preview iframes (`h-40 sm:h-48 md:h-56`) to fit mobile viewports smoothly.
+    - `Contact.jsx`: Adjusted section vertical padding (`py-16 sm:py-24 md:py-32`), scaled heading, adjusted outer card padding (`p-4 sm:p-8 lg:p-12`) and form padding (`p-4 sm:p-8`), and sized input/button fields for mobile comfort.
+    - `ResumePreviewModal.jsx`: Scaled modal padding (`p-1.5 sm:p-4`), streamlined mobile toolbar with horizontal scrolling prevention, hid iframe Print on mobile screens to save space while retaining direct Download and Open in Tab, and set responsive document canvas min-height (`min-h-[480px]`).
+  - **Verification**:
+    - `npm run lint`: Passed with 0 errors.
+    - `npm run build`: Production bundle built cleanly in 5.61s with 0 errors.
 
 ## Next Recommended Step
 Address optional minor optimizations (e.g. updating document title in `index.html` from "Portfolio Foundation" to the student's name, fixing favicon link) upon user direction.
+
