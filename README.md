@@ -39,24 +39,6 @@ A personal Information Technology portfolio website built to showcase academic w
 - Soft white and purple visual design system
 - Mobile-friendly navigation
 
-## Featured Projects
-
-### St. Rose Laboratory Result Management System
-
-A laboratory result management system developed as a practical web application project.
-
-Features presented in the portfolio include:
-
-- Dashboard
-- Examination Catalog
-- Laboratory Result Preview
-- Interactive screenshot gallery
-- GitHub repository link
-
-### Personal Portfolio Website
-
-This repository contains the portfolio website itself, built to present academic background, skills, projects, certificates, and contact information in a clean and responsive interface.
-
 ## Education
 
 The portfolio includes primary, secondary, and ongoing tertiary education history.
